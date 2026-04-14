@@ -4,5 +4,17 @@
 Home
 {% endblock %}
 {% block content %}
-<h1>Latest Posts</h1>
+<h3 class="title-home">My Latest Posts</h3>
+<div class="card">
+        {% for post in posts %}
+        <div class="col">
+            <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow bg-light rounded">
+                <h3>Title: {{post.title}}</h3>
+                <p>Content: {{post.content}}</p>
+                <h6>Published: {{post.published_at}}</h6>
+                <hr>
+            </div>
+        </div>
+        {% endfor %}
+</div>
 {% endblock %}
