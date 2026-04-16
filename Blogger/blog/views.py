@@ -5,7 +5,12 @@ from .models import Post
 def posts_view(request : HttpRequest):
 
     if request.method == 'POST':
-        new_post = Post(title=request.POST['title'], content=request.POST['content'], is_published=request.POST.get('is_published', False), published_at=request.POST.get('published_at', None), image=request.FILES["image"])
+        new_post = Post(title=request.POST['title'], 
+        content=request.POST['content'], 
+        is_published=request.POST.get('is_published', False),
+        published_at=request.POST.get('published_at', None)) 
+        if "image" in request.FILES:
+            new_post.image = request.FILES["image"]
         new_post.save()
 
         return redirect('main:home_view')
